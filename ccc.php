@@ -9,3 +9,5 @@ class A
 
 $a = new A();
 echo $a->add(3, 3);
+
+echo "孙震";
