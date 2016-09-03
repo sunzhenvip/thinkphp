@@ -1,0 +1,67 @@
+<layout name="Common/common" />
+<include file="Common/nav" />
+
+<link rel="stylesheet" href="__PUBLIC__/Home/style/home.css" type="text/css">
+<link rel="stylesheet" href="__PUBLIC__/Home/style/user.css" type="text/css">
+<link rel="stylesheet" href="__PUBLIC__/Home/jcrop/jquery.Jcrop.min.css" type="text/css">
+<script type="text/javascript" src="__PUBLIC__/Home/js/home.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.Jcrop.min.js"></script>
+
+	<!-- 页面主体 start -->
+	<div class="main w1210 bc mt10">
+		<div class="crumb w1210">
+			<h2><strong>我的头像 </strong><span>> 设置头像</span></h2>
+		</div>
+		
+		<!-- 左侧导航菜单 -->
+		<include file="Common/member_menu" />
+
+		<!-- 右侧内容区域 start -->
+		<div class="content fl ml10">
+			<div class="user_hd">
+				<h3>设置头像</h3>
+			</div>
+
+			<br /><br />
+			<!-- 上传图片的表单 -->
+			<iframe style="display:none;" width="700" height="300" name="upload"></iframe>
+			<div id="div_image"><img style="cursor:pointer;" onclick="$('#select_image').trigger('click');" src="<?php if($face) echo '/Public/Uploads/'.$face; else echo '/Public/Home/images/taohua.jpg'; ?>" /></div>
+			<div class="user_bd mt10">
+				<!-- 上传图片的 -->
+				<form id="upload" target="upload" action="<?php echo U('set_face'); ?>" enctype="multipart/form-data" method="post">
+					<ul>
+						<li>
+							<input id="select_image" style="display:none;" onchange="$('#upload').trigger('submit');$('#upload').trigger('reset');" type="file" name="face" />
+						</li>
+					</ul>
+				</form>
+				<!-- 提交图片路径和裁切点 -->
+				<form method="POST" action="__SELF__">
+					<input type="hidden" name="x" />
+					<input type="hidden" name="y" />
+					<input type="hidden" name="w" />
+					<input type="hidden" name="h" />
+					<input type="hidden" name="img" />
+					<ul>
+						<li><input type="submit" value="确定" /></li>
+					</ul>
+					
+				</form>
+			</div>
+		</div>
+		<!-- 右侧内容区域 end -->
+	</div>
+	<!-- 页面主体 end-->
+
+<include file="Common/helper" />
+
+<script>
+// 当选择完裁切区域之后获取裁切变量并放到表单中
+function setPoint(c)
+{
+	$("input[name=x]").val(c.x);
+	$("input[name=y]").val(c.y);
+	$("input[name=w]").val(c.w);
+	$("input[name=h]").val(c.h);
+}
+</script>

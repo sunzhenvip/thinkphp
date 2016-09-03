@@ -1,0 +1,57 @@
+<layout name="layout" />
+<!-- 搜索 -->
+<div class="form-div search_form_div">
+    <form action="__ACTION__" method="GET" name="search_form">
+		<p>
+			会员id：
+	   		<input type="text" name="member_id" size="30" value="<?php echo I('get.member_id'); ?>" />
+		</p>
+		<p>
+			商品id：
+	   		<input type="text" name="goods_id" size="30" value="<?php echo I('get.goods_id'); ?>" />
+		</p>
+		<p>
+			评论时间：
+	   		<input type="text" name="addtime" size="30" value="<?php echo I('get.addtime'); ?>" />
+		</p>
+		<p>
+			评论内容：
+	   		<input type="text" name="content" size="30" value="<?php echo I('get.content'); ?>" />
+		</p>
+		<p>
+			评分分值：
+	   		<input type="text" name="star" size="30" value="<?php echo I('get.star'); ?>" />
+		</p>
+		<p><input type="submit" value=" 搜索 " class="button" /></p>
+    </form>
+</div>
+<!-- 列表 -->
+<div class="list-div" id="listDiv">
+	<table cellpadding="3" cellspacing="1">
+    	<tr>
+            <th >会员id</th>
+            <th >商品id</th>
+            <th >评论内容</th>
+            <th >评分分值</th>
+			<th width="60">操作</th>
+        </tr>
+		<?php foreach ($data as $k => $v): ?>            
+			<tr class="tron">
+				<td><?php echo $v['member_id']; ?></td>
+				<td><?php echo $v['goods_id']; ?></td>
+				<td><?php echo $v['content']; ?></td>
+				<td><?php echo $v['star']; ?></td>
+		        <td align="center">
+		        	<a href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p')); ?>" title="编辑">编辑</a> |
+	                <a href="<?php echo U('delete?id='.$v['id'].'&p='.I('get.p')); ?>" onclick="return confirm('确定要删除吗？');" title="移除">移除</a> 
+		        </td>
+	        </tr>
+        <?php endforeach; ?> 
+		<?php if(preg_match('/\d/', $page)): ?>  
+        <tr><td align="right" nowrap="true" colspan="99" height="30"><?php echo $page; ?></td></tr> 
+        <?php endif; ?> 
+	</table>
+</div>
+<script>
+</script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/Js/tron.js"></script>

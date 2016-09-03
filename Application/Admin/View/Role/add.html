@@ -1,0 +1,119 @@
+<layout name="layout" />
+
+<div class="main-div">
+    <form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data">
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <tr>
+                <td class="label">角色名称：</td>
+                <td>
+                    <input  type="text" name="role_name" value="" />
+                </td>
+            </tr>
+            <tr>
+                    <td class="label">权限列表：</td>
+                    <td>
+                    <ul>
+			        <?php foreach ($priData as $k => $v): ?>
+			        	<li>
+				        	<?php echo str_repeat('-', $v['level']*8); ?><input level="<?php echo $v['level']; ?>" value="<?php echo $v['id']; ?>" type="checkbox" name="pri_id[]" /> <a level="<?php echo $v['level']; ?>" href="javascript:void(0);">[-]</a> <?php echo $v['pri_name']; ?>
+			        	</li>
+			        <?php endforeach; ?>
+			        </ul>
+                    </td>
+                </tr>
+            <tr>
+                <td colspan="99" align="center">
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<script>
+$(":checkbox").click(function(){
+	// 所在的li
+	var li = $(this).parent();
+	// 先取当前的level
+	var level = $(this).attr("level");
+	// 判断是选中还是取消
+	if($(this).attr("checked"))
+	{
+		// 循环后面的每一个
+		li.nextAll("li").each(function(k,v){
+			// 判断如果level大就说明是子权限
+			if($(v).find(":checkbox").attr("level") > level)
+				$(v).find(":checkbox").attr("checked", "checked");
+			else
+				return false;  // 退出循环，后面的不用再判断了
+		});
+		var tmp_level = level;  // 复制一个level值
+		// 循环前面的每一个
+		li.prevAll("li").each(function(k,v){
+			// 判断如果level大就说明是子权限
+			if($(v).find(":checkbox").attr("level") < tmp_level)
+			{
+				$(v).find(":checkbox").attr("checked", "checked");
+				tmp_level--;   // 每找到一个上级就再向前提一级
+			}
+		});
+	}
+	else
+	{
+		li.nextAll("li").each(function(k,v){
+			// 判断如果level大就说明是子权限
+			if($(v).find(":checkbox").attr("level") > level)
+				$(v).find(":checkbox").removeAttr("checked");
+			else
+				return false;  // 退出循环，后面的不用再判断了
+		});
+	}
+});
+
+$("a").click(function(){
+	var li = $(this).parent();
+	// 获取是第几级的
+	var level = $(this).attr("level");
+	if($(this).text() == '[+]')
+	{
+		$(this).text('[-]');
+		li.nextAll("li").each(function(k,v){
+			// 判断如果level大就说明是子权限
+			if($(v).find(":checkbox").attr("level") > level)
+			{
+				$(v).find("a").text('[-]');
+				$(v).show();
+			}
+			else
+				return false;  // 退出循环，后面的不用再判断了
+		});
+	}
+	else
+	{
+		$(this).text('[+]');
+		// 把所有的子权限折叠
+		li.nextAll("li").each(function(k,v){
+			// 判断如果level大就说明是子权限
+			if($(v).find(":checkbox").attr("level") > level)
+				$(v).hide();
+			else
+				return false;  // 退出循环，后面的不用再判断了
+		});
+	}
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+<layout name="layout" />
+
+<div class="main-div">
+    <form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data" >
+    	<input type="hidden" name="id" value="<?php echo $data['id']; ?>" />
+		<input type="hidden" name="old_face" value="<?php echo $data['face']; ?>" />
+		<input type="hidden" name="old_face" value="<?php echo $data['face']; ?>" />
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <tr>
+                <td class="label">Email：</td>
+                <td>
+                    <input  type="text" name="email" value="<?php echo $data['email']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">昵称：</td>
+                <td>
+                    <input  type="text" name="name" value="<?php echo $data['name']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">密码：</td>
+                <td>
+                    <input type="password" size="25" name="password" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">头像：</td>
+                <td>
+                	<input type="file" name="face" /><br /> 
+                	<?php showImage($data['face'], 100); ?>                </td>
+            </tr>
+            <tr>
+                <td class="label">性别：</td>
+                <td>
+                	<input type="radio" name="gender" value="男" <?php if($data['gender'] == '男') echo 'checked="checked"'; ?> />男 
+                	<input type="radio" name="gender" value="女" <?php if($data['gender'] == '女') echo 'checked="checked"'; ?> />女 
+                	<input type="radio" name="gender" value="保密" <?php if($data['gender'] == '保密') echo 'checked="checked"'; ?> />保密 
+                </td>
+            </tr>
+            <tr>
+                <td class="label">是否通过验证：</td>
+                <td>
+                	<input type="radio" name="status" value="0" <?php if($data['status'] == '0') echo 'checked="checked"'; ?> />未验证 
+                	<input type="radio" name="status" value="1" <?php if($data['status'] == '1') echo 'checked="checked"'; ?> />已验证 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="99" align="center">
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+</script>

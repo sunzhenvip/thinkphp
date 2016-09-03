@@ -1,0 +1,56 @@
+<layout name="Common/common" />
+<include file="Common/nav" />
+
+<link rel="stylesheet" href="__PUBLIC__/Home/style/home.css" type="text/css">
+<link rel="stylesheet" href="__PUBLIC__/Home/style/user.css" type="text/css">
+<script type="text/javascript" src="__PUBLIC__/Home/js/home.js"></script>
+
+	<!-- 页面主体 start -->
+	<div class="main w1210 bc mt10">
+		<div class="crumb w1210">
+			<h2><strong>我的定单 </strong><span>> 我的定单</span></h2>
+		</div>
+		
+		<!-- 左侧导航菜单 -->
+		<include file="Common/member_menu" />
+
+		<!-- 右侧内容区域 start -->
+		<div class="content fl ml10">
+			<div class="user_hd">
+				<h3>我的定单</h3>
+			</div>
+
+			<div class="user_bd mt10">
+				<table width="100%" cellpadding="5" cellspacing="5">
+					<tr>
+						<th>编号</th>
+						<th>下单时间</th>
+						<th>总价格</th>
+						<th>收货人地址</th>
+						<th>收货人电话</th>
+						<th>支付</th>
+					</tr>
+					<?php foreach ($data as $k => $v): ?>
+					<tr>
+						<td><?php echo $v['id']; ?></td>
+						<td><?php echo date('Y-m-d H:i:s', $v['addtime']); ?></td>
+						<td>￥<?php echo $v['total_price']; ?>元</td>
+						<td><?php echo $v['shr_province'].' '.$v['shr_city'].' '.$v['shr_area'].' '.$v['shr_address'].' '.$v['shr_name']; ?></td>
+						<td><?php echo $v['shr_tel']; ?></td>
+						<td>
+							<?php if($v['pay_status'] == 0)
+									// 生成支付宝按钮
+									echo buildAlipayBtn($v['id']);
+							?>
+						</td>
+					</tr>
+					<?php endforeach; ?>
+					<tr><td colspan="6"><?php echo $page; ?></td></tr>
+				</table>
+			</div>
+		</div>
+		<!-- 右侧内容区域 end -->
+	</div>
+	<!-- 页面主体 end-->
+
+<include file="Common/helper" />

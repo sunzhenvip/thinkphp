@@ -1,0 +1,56 @@
+<layout name="layout" />
+<div class="tab-div">
+    <div id="tabbar-div">
+        <p>
+            <span class="tab-front" id="general-tab">通用信息</span>
+        </p>
+    </div>
+    <div id="tabbody-div">
+        <form enctype="multipart/form-data" action="__SELF__" method="post">
+        	<input type="hidden" name="id" value="<?php echo I('get.id'); ?>" />
+            <table width="90%" id="general-table" align="center">
+            	<tr>
+                    <td class="label">上级分类：</td>
+                    <td>
+                    <select name="parent_id">
+                    	<option value="0">顶级分类</option>
+                    	<?php foreach ($catData as $k => $v): 
+                    			// 如果是自己或者是子分类就不显示
+                    			if($info['id'] == $v['id'] || in_array($v['id'], $children))
+                    				continue ;
+                    			if($info['parent_id'] == $v['id'])
+                    				$select = 'selected="selected"';
+                    			else 
+                    				$select = '';
+                    	?>
+                    		<option <?php echo $select; ?> value="<?php echo $v['id']; ?>"><?php echo str_repeat('-', $v['level']*8) . $v['cat_name']; ?></option>
+                    	<?php endforeach; ?>
+                    </select>
+                    <span class="require-field">*</span></td>
+                </tr>
+                <tr>
+                    <td class="label">分类名称：</td>
+                    <td><input type="text" name="cat_name" value="<?php echo $info['cat_name']; ?>" size="30" />
+                    <span class="require-field">*</span></td>
+                </tr>
+                <tr>
+                    <td class="label">是否推荐：</td>
+                    <td>
+                        楼层 <input <?php if($info['is_floor'] == '是') echo 'checked="checked"'; ?> type="checkbox" name="is_floor" value="是" />
+                    </td>
+                </tr>
+            </table>
+            <div class="button-div">
+                <input type="submit" value=" 确定 " class="button"/>
+                <input type="reset" value=" 重置 " class="button" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+UM.getEditor('goods_desc', {
+	initialFrameWidth : '100%',
+	initialFrameHeight : 500
+});
+</script>

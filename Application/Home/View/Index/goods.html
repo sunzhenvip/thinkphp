@@ -1,0 +1,509 @@
+<layout name="Common/common" />
+<!-- 引入这个页面特有的样式文件 -->
+<link rel="stylesheet" href="__PUBLIC__/Home/style/goods.css" type="text/css">
+<link rel="stylesheet" href="__PUBLIC__/Home/style/common.css" type="text/css">
+<link rel="stylesheet" href="__PUBLIC__/Home/style/jqzoom.css" type="text/css">
+<script type="text/javascript" src="__PUBLIC__/Home/js/goods.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/jqzoom-core.js"></script>
+<!-- jqzoom 效果 -->
+	<script type="text/javascript">
+		$(function(){
+			$('.jqzoom').jqzoom({
+	            zoomType: 'standard',
+	            lens:true,
+	            preloadImages: false,
+	            alwaysOn:false,
+	            title:false,
+	            zoomWidth:400,
+	            zoomHeight:400
+	        });
+		})
+	</script>
+<!--引入导航条-->
+<include file="Common/nav" />
+
+<!-- 商品页面主体 start -->
+	<div class="main w1210 mt10 bc">
+		<!-- 面包屑导航 start -->
+		<div class="breadcrumb">
+			<h2>当前位置：<a href="/">首页</a> > 
+			<?php $_c = count($catPath)-1;
+			for($i=$_c; $i>=0; $i--): ?>
+				<a href="<?php echo U('search?cat_id='.$catPath[$i]['id']); ?>"><?php echo $catPath[$i]['cat_name']; ?></a> > 
+			<?php endfor; ?> 
+			<?php echo $info['goods_name']; ?></h2>
+		</div>
+		<!-- 面包屑导航 end -->
+		
+		<!-- 主体页面左侧内容 start -->
+		<div class="goods_left fl">
+			<!-- 相关分类 start -->
+			<div class="related_cat leftbar mt10">
+				<h2><strong>相关分类</strong></h2>
+				<div class="leftbar_wrap">
+					<ul>
+						<li><a href="">笔记本</a></li>
+						<li><a href="">超极本</a></li>
+						<li><a href="">平板电脑</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- 相关分类 end -->
+
+			<!-- 相关品牌 start -->
+			<div class="related_cat	leftbar mt10">
+				<h2><strong>同类品牌</strong></h2>
+				<div class="leftbar_wrap">
+					<ul>
+						<li><a href="">D-Link</a></li>
+						<li><a href="">戴尔</a></li>
+						<li><a href="">惠普</a></li>
+						<li><a href="">苹果</a></li>
+						<li><a href="">华硕</a></li>
+						<li><a href="">宏基</a></li>
+						<li><a href="">神舟</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- 相关品牌 end -->
+
+			<!-- 热销排行 start -->
+			<div class="hotgoods leftbar mt10">
+				<h2><strong>热销排行榜</strong></h2>
+				<div class="leftbar_wrap">
+					<ul>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+			<!-- 热销排行 end -->
+
+
+			<!-- 浏览过该商品的人还浏览了  start 注：因为和list页面newgoods样式相同，故加入了该class -->
+			<div class="related_view newgoods leftbar mt10">
+				<h2><strong>浏览了该商品的用户还浏览了</strong></h2>
+				<div class="leftbar_wrap">
+					<ul>
+						<li>
+							<dl>
+								<dt><a href=""><img src="__PUBLIC__/Home/images/relate_view1.jpg" alt="" /></a></dt>
+								<dd><a href="">ThinkPad E431(62771A7) 14英寸笔记本电脑 (i5-3230 4G 1TB 2G独显 蓝牙 win8)</a></dd>
+								<dd><strong>￥5199.00</strong></dd>
+							</dl>
+						</li>
+
+						<li>
+							<dl>
+								<dt><a href=""><img src="__PUBLIC__/Home/images/relate_view2.jpg" alt="" /></a></dt>
+								<dd><a href="">ThinkPad X230i(2306-3V9） 12.5英寸笔记本电脑 （i3-3120M 4GB 500GB 7200转 蓝牙 摄像头 Win8）</a></dd>
+								<dd><strong>￥5199.00</strong></dd>
+							</dl>
+						</li>
+
+						<li>
+							<dl>
+								<dt><a href=""><img src="__PUBLIC__/Home/images/relate_view3.jpg" alt="" /></a></dt>
+								<dd><a href="">T联想（Lenovo） Yoga13 II-Pro 13.3英寸超极本 （i5-4200U 4G 128G固态硬盘 摄像头 蓝牙 Win8）晧月银</a></dd>
+								<dd><strong>￥7999.00</strong></dd>
+							</dl>
+						</li>
+
+						<li>
+							<dl>
+								<dt><a href=""><img src="__PUBLIC__/Home/images/relate_view4.jpg" alt="" /></a></dt>
+								<dd><a href="">联想（Lenovo） Y510p 15.6英寸笔记本电脑（i5-4200M 4G 1T 2G独显 摄像头 DVD刻录 Win8）黑色</a></dd>
+								<dd><strong>￥6199.00</strong></dd>
+							</dl>
+						</li>
+
+						<li class="last">
+							<dl>
+								<dt><a href=""><img src="__PUBLIC__/Home/images/relate_view5.jpg" alt="" /></a></dt>
+								<dd><a href="">ThinkPad E530c(33662D0) 15.6英寸笔记本电脑 （i5-3210M 4G 500G NV610M 1G独显 摄像头 Win8）</a></dd>
+								<dd><strong>￥4399.00</strong></dd>
+							</dl>
+						</li>					
+					</ul>
+				</div>
+			</div>
+			<!-- 浏览过该商品的人还浏览了  end -->
+
+			<!-- 最近浏览 start -->
+			<div class="viewd leftbar mt10">
+				<h2><a href="">清空</a><strong>最近浏览过的商品</strong></h2>
+				<div class="leftbar_wrap">
+					<dl>
+						<dt><a href=""><img src="__PUBLIC__/Home/images/hpG4.jpg" alt="" /></a></dt>
+						<dd><a href="">惠普G4-1332TX 14英寸笔记...</a></dd>
+					</dl>
+
+					<dl class="last">
+						<dt><a href=""><img src="__PUBLIC__/Home/images/crazy4.jpg" alt="" /></a></dt>
+						<dd><a href="">直降200元！TCL正1.5匹空调</a></dd>
+					</dl>
+				</div>
+			</div>
+			<!-- 最近浏览 end -->
+
+		</div>
+		<!-- 主体页面左侧内容 end -->
+		
+		<!-- 商品信息内容 start -->
+		<div class="goods_content fl mt10 ml10">
+			<!-- 商品概要信息 start -->
+			<div class="summary">
+				<h3><strong><?php echo $info['goods_name']; ?></strong></h3>
+				
+				<!-- 图片预览区域 start -->
+				<div class="preview fl">
+					<div class="midpic">
+						<a href="__PUBLIC__/Uploads/<?php echo $info['mid_logo']; ?>" class="jqzoom" rel="gal1">   <!-- 第一幅图片的大图 class 和 rel属性不能更改 -->
+							<img width="350" src="__PUBLIC__/Uploads/<?php echo $info['mid_logo']; ?>" alt="" />               <!-- 第一幅图片的中图 -->
+						</a>
+					</div>
+	
+					<!--使用说明：此处的预览图效果有三种类型的图片，大图，中图，和小图，取得图片之后，分配到模板的时候，把第一幅图片分配到 上面的midpic 中，其中大图分配到 a 标签的href属性，中图分配到 img 的src上。 下面的smallpic 则表示小图区域，格式固定，在 a 标签的 rel属性中，分别指定了中图（smallimage）和大图（largeimage），img标签则显示小图，按此格式循环生成即可，但在第一个li上，要加上cur类，同时在第一个li 的a标签中，添加类 zoomThumbActive  -->
+
+					<div class="smallpic">
+						<a href="javascript:;" id="backward" class="off"></a>
+						<a href="javascript:;" id="forward" class="on"></a>
+						<div class="smallpic_wrap">
+							<ul>
+								<!-- 第一个小图是LOGO -->
+								<li class="cur">
+									<a class="zoomThumbActive" href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '__PUBLIC__/Uploads/<?php echo $info['mid_logo']; ?>',largeimage: '__PUBLIC__/Uploads/<?php echo $info['mid_logo']; ?>'}"><img src="__PUBLIC__/Uploads/<?php echo $info['mid_logo']; ?>"></a>
+								</li>
+								<!-- 循环相册中的图片 -->
+								<?php foreach ($picData as $k => $v): ?>
+								<li>
+									<a href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '__PUBLIC__/Uploads/<?php echo $v['mid_pic']; ?>',largeimage: '__PUBLIC__/Uploads/<?php echo $v['mid_pic']; ?>'}"><img src="__PUBLIC__/Uploads/<?php echo $v['mid_pic']; ?>"></a>
+								</li>
+								<?php endforeach; ?>
+							</ul>
+						</div>
+						
+					</div>
+				</div>
+				<!-- 图片预览区域 end -->
+
+				<!-- 商品基本信息区域 start -->
+				<div class="goodsinfo fl ml10">
+					<ul>
+						<li><span>商品编号： </span><?php echo $info['id']; ?></li>
+						<li class="market_price"><span>定价：</span><em>￥<?php echo $info['market_price']; ?></em></li>
+						<li ><span>本店价：</span> <strong>￥<?php echo $info['shop_price']; ?></strong></li>
+						<li  class="shop_price"><span>会员价格：</span><em>￥<strong style="font-size:30px;" id="member_price">计算中....</strong>元</em></li>
+						<li><span>上架时间：</span><?php echo date('Y-m-d', $info['addtime']); ?></li>
+						<li class="star"><span>商品评分：</span> <strong></strong><a href="">(已有21人评价)</a></li>
+					</ul>
+					<form action="<?php echo U('Cart/add'); ?>" method="post" class="choose">
+						<input type="hidden" name="goods_id" value="<?php echo I('get.id'); ?>" />
+						<ul>
+							<!-- 循环属性名称 -->
+							<?php 
+							foreach ($mul as $k => $v): ?>
+							<li class="product">
+								<dl>
+									<dt><?php echo $k; ?>：</dt>
+									<dd>
+										<!-- 循环属性值 -->
+										<?php 
+										$i=0; // 第几个属性值
+										foreach ($v as $k1 => $v1): ?>
+										<!-- 让第一个显示为选中的状态 -->
+										<a <?php if($i==0) echo 'class="selected"'; ?> href="javascript:;">
+											<?php echo $v1; ?> 
+											<!-- 让第一个单选框为选中的状态 -->
+											<input <?php if($i++==0) echo 'checked="checked"'; ?> name="goods_attr_id[<?php echo $k; ?>]" type="radio"  value="<?php echo $k1; ?>"/>
+										</a>
+										<?php endforeach; ?>
+									</dd>
+								</dl>
+							</li>
+							<?php endforeach; ?>
+							<li>
+								<dl>
+									<dt>购买数量：</dt>
+									<dd>
+										<a href="javascript:;" id="reduce_num"></a>
+										<input type="text" name="amount" value="1" class="amount"/>
+										<a href="javascript:;" id="add_num"></a>
+									</dd>
+								</dl>
+							</li>
+
+							<li>
+								<dl>
+									<dt>&nbsp;</dt>
+									<dd>
+										<input type="submit" value="" class="add_btn" />
+									</dd>
+								</dl>
+							</li>
+
+						</ul>
+					</form>
+				</div>
+				<!-- 商品基本信息区域 end -->
+			</div>
+			<!-- 商品概要信息 end -->
+			
+			<div style="clear:both;"></div>
+
+			<!-- 商品详情 start -->
+			<div class="detail">
+				<div class="detail_hd">
+					<ul>
+						<li class="first on"><span>商品介绍</span></li>
+						<li><span>商品评价</span></li>
+						<li><span>售后保障</span></li>
+					</ul>
+				</div>
+				<div class="detail_bd">
+					<!-- 商品介绍 start -->
+					<div class="introduce detail_div">
+						<div class="attr mt15">
+							<ul>
+								<?php foreach ($uni as $k => $v): ?>
+								<li><span><?php echo $k; ?>：</span><?php echo $v; ?></li>
+								<?php endforeach; ?>
+							</ul>
+						</div>
+
+						<div class="desc mt10"><?php echo $info['goods_desc']; ?></div>
+					</div>
+					<!-- 商品介绍 end -->
+					
+					<!-- 商品评论 start -->
+					<div class="comment detail_div mt10 none">
+						<div class="comment_summary">
+							<div class="rate fl">
+								<strong><em class="hao"></em>%</strong> <br />
+								<span>好评度</span>
+							</div>
+							<div class="percent fl">
+								<dl>
+									<dt>好评（<span class="hao"></span>%）</dt>
+									<dd><div id="hao_len"></div></dd>
+								</dl>
+								<dl>
+									<dt>中评（<span class="zhong"></span>%）</dt>
+									<dd><div id="zhong_len"></div></dd>
+								</dl>
+								<dl>
+									<dt>差评（<span class="cha"></span>%）</dt>
+									<dd><div id="cha_len"></div></dd>
+								</dl>
+							</div>
+							<div class="buyer fl">
+								<dl>
+									<dt>买家印象：</dt>
+									<dd><span>屏幕大</span><em>(1953)</em></dd>
+									<dd><span>外观漂亮</span><em>(786)</em></dd>
+									<dd><span>系统流畅</span><em>(1091)</em></dd>
+									<dd><span>功能齐全</span><em>(1109)</em></dd>
+									<dd><span>反应快</span><em>(659)</em></dd>
+									<dd><span>分辨率高</span><em>(824)</em></dd>
+								</dl>
+							</div>
+						</div>
+						
+						<!-- 评论列表 -->
+						<div id="comment_list"><img src="/Public/Home/images/loading.gif" /></div>
+
+						<!-- 分页信息 start -->
+						<div class="page mt20"></div>
+						<!-- 分页信息 end -->
+
+						<!--  评论表单 start-->
+						<div class="comment_form mt20" style="display:none;">
+							<form id="comment_form" action="__SELF__" method="POST">
+								<input type="hidden" name="goods_id" value="<?php echo I('get.id'); ?>" />
+								<ul>
+									<li>
+										<label for=""> 评分：</label>
+										<input type="radio" name="star" value="5" checked="checked" /> <strong class="star star5"></strong>
+										<input type="radio" name="star" value="4" /> <strong class="star star4"></strong>
+										<input type="radio" name="star" value="3" /> <strong class="star star3"></strong>
+										<input type="radio" name="star" value="2" /> <strong class="star star2"></strong>
+										<input type="radio" name="star" value="1" /> <strong class="star star1"></strong>
+									</li>
+									<li>
+										<label for="">评价内容：</label>
+										<textarea name="content" id="" cols="" rows=""></textarea>
+									</li>
+									<li>
+										<label for="">&nbsp;</label>
+										<input type="submit" value="提交评论"  class="comment_btn"/>										
+									</li>
+								</ul>
+							</form>
+						</div>
+						<!--  评论表单 end-->
+						
+					</div>
+					<!-- 商品评论 end -->
+
+					<!-- 售后保障 start -->
+					<div class="after_sale mt15 none detail_div">
+						<div>
+							<p>本产品全国联保，享受三包服务，质保期为：一年质保 <br />如因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，15日内换货，15日以上在质保期内享受免费保修等三包服务！</p>
+							<p>售后服务电话：800-898-9006 <br />品牌官方网站：http://www.lenovo.com.cn/</p>
+
+						</div>
+
+						<div>
+							<h3>服务承诺：</h3>
+							<p>本商城向您保证所售商品均为正品行货，京东自营商品自带机打发票，与商品一起寄送。凭质保证书及京东商城发票，可享受全国联保服务（奢侈品、钟表除外；奢侈品、钟表由本商城联系保修，享受法定三包售后服务），与您亲临商场选购的商品享受相同的质量保证。本商城还为您提供具有竞争力的商品价格和运费政策，请您放心购买！</p> 
+							
+							<p>注：因厂家会在没有任何提前通知的情况下更改产品包装、产地或者一些附件，本司不能确保客户收到的货物与商城图片、产地、附件说明完全一致。只能确保为原厂正货！并且保证与当时市场上同样主流新品一致。若本商城没有及时更新，请大家谅解！</p>
+
+						</div>
+						
+						<div>
+							<h3>权利声明：</h3>
+							<p>本商城上的所有商品信息、客户评价、商品咨询、网友讨论等内容，是京东商城重要的经营资源，未经许可，禁止非法转载使用。</p>
+							<p>注：本站商品信息均来自于厂商，其真实性、准确性和合法性由信息拥有者（厂商）负责。本站不提供任何保证，并不承担任何法律责任。</p>
+
+						</div>
+					</div>
+					<!-- 售后保障 end -->
+
+				</div>
+			</div>
+			<!-- 商品详情 end -->
+
+			
+		</div>
+		<!-- 商品信息内容 end -->
+		
+
+	</div>
+	<!-- 商品页面主体 end -->
+
+
+<!--引入帮助-->
+<include file="Common/helper" />
+
+<script>
+$.ajax({
+	type : "GET",
+	url : "<?php echo U('Index/ajaxMemberPrice?id='.I('get.id')); ?>",
+	success : function(data)
+	{
+		$("#member_price").html(data);
+	}
+});
+
+// 为提交按钮绑定事件
+$(".comment_btn").click(function(){
+	var form = $(".comment_form form");
+	// 获取表单中的内容并拼成这样的字符串 : name=xxx&star=5&content=xxxxx&goods_id=323232323232
+	var formData = form.serialize();
+	$.ajax({
+		type : "POST",
+		data : formData, // 表单中的数据
+		dataType : "json",
+		url : "<?php echo U('Index/ajaxComment'); ?>",
+		success : function(data)
+		{
+			if(data.status == 1)
+			{
+				var date = new Date();
+				// 获取分值
+				var star = $("input[name=star]:checked").val();
+				// 先获取内容
+				var content = $("textarea[name=content]").val();
+				var html = '<div class="comment_items mt10 none"><div class="user_pic"><dl><dt><a href=""><img src="'+data.info.face+'" alt="" /></a></dt><dd><a href="">'+data.info.username+'</a></dd></dl></div><div class="item"><div class="title"><span>'+date+'</span><strong class="star star'+star+'"></strong></div><div class="comment_content" style="min-height:60px;">'+content+'</div></div><div class="cornor"></div></div>';
+				// 把这个字符串转化成jquwry的对象
+				html = $(html);
+				// 把评论显示在第一个位置上
+				$("#comment_list").prepend(html);
+				// 清空表单
+				form.trigger("reset");
+				// 导航条滚动到第一个评论的位置
+				$("body").animate({
+					"scrollTop" : "700px"
+				}, 100, function(){
+					html.fadeIn(3000);
+				});
+			}
+			else
+			{
+				alert(data.info);
+			}
+		}
+	});
+	return false;  // 阻止表单提交
+});
+/**
+获取某一页的评论并且覆盖上一页的
+**/
+function getComment(p)
+{
+	$.ajax({
+		type : "GET",
+		url : "<?php echo U('Index/ajaxGetComment?goods_id='.I('get.id'), '', FALSE); ?>/p/"+p,
+		dataType : "json",
+		success : function(data)
+		{
+			/*************** 把数据放到页面 *******************/
+			// 好评率和印象
+			if(p==1)
+			{
+				$(".hao").html(data.info.hao);
+				$("#hao_len").css({
+					"width" : data.info.hao+"px"
+				});
+				
+				$(".zhong").html(data.info.zhong);
+				$("#zhong_len").css({
+					"width" : data.info.zhong+"px"
+				});
+				
+				$(".cha").html(data.info.cha);
+				$("#cha_len").css({
+					"width" : data.info.cha+"px"
+				});
+				
+				// 判断是否显示评论
+				if(data.info.can_comment == 1)
+					$(".comment_form").show(); // 显示出表单
+			}
+			/************ 循环每个评论 ************/
+			var html = "";
+			$(data.info.data).each(function(k,v){
+				html += '<div class="comment_items mt10"><div class="user_pic"><dl><dt><a href=""><img src="'+v.face+'" alt="" /></a></dt><dd><a href="">'+v.email+'</a></dd></dl></div><div class="item"><div class="title"><span>'+v.addtime+'</span><strong class="star star'+v.star+'"></strong></div><div class="comment_content" style="min-height:60px;">'+v.content+'</div></div><div class="cornor"></div></div>';
+			});
+			$("#comment_list").html(html);  // 覆盖上一页的数据
+			/*************** 拼出翻页的字符串 ****************/
+			var page = "";
+			for(var i=1; i<=data.info.pageNumber; i++)
+			{
+				if(i == p)
+					var cls = 'class="cur"';
+				else
+					var cls = '';
+				page += ' <a onclick="getComment('+i+');" href="javascript:void(0);" '+cls+'>'+i+'</a> ';
+			}
+			$(".page").html(page);
+		}
+	});
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

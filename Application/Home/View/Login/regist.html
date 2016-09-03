@@ -1,0 +1,71 @@
+<layout name="Common/common" />
+<link rel="stylesheet" href="__PUBLIC__/Home/style/login.css" type="text/css">
+
+
+	<!-- 页面头部 start -->
+	<div class="header w990 bc mt15">
+		<div class="logo w990">
+			<h2 class="fl"><a href="index.html"><img src="__PUBLIC__/Home/images/logo.png" alt="京西商城"></a></h2>
+		</div>
+	</div>
+	<!-- 页面头部 end -->
+	
+	<!-- 登录主体部分start -->
+	<div class="login w990 bc mt10 regist">
+		<div class="login_hd">
+			<h2>用户注册</h2>
+			<b></b>
+		</div>
+		<div class="login_bd">
+			<div class="login_form fl">
+				<form action="__SELF__" method="post">
+					<ul>
+						<li>
+							<label for="">Email：</label>
+							<input type="text" class="txt" name="email" />
+							<p>必填，请输入正确的email格式</p>
+						</li>
+						<li>
+							<label for="">昵称：</label>
+							<input type="text" class="txt" name="username" />
+							<p>请输入一个昵称</p>
+						</li>
+						<li>
+							<label for="">密码：</label>
+							<input type="password" class="txt" name="password" />
+							<p>6-20位字符</p>
+						</li>
+						<li>
+							<label for="">确认密码：</label>
+							<input type="password" class="txt" name="cpassword" />
+							<p> <span>请再次输入密码</p>
+						</li>
+						<li class="checkcode">
+							<label for="">验证码：</label>
+							<input type="text"  name="chkcode" />
+							<img style="cursor:pointer;" onclick="this.src='<?php echo U('Login/chkcode'); ?>?'+Math.random();" src="<?php echo U('Login/chkcode'); ?>" />
+							<span>看不清？点击图片换一张！</span>
+						</li>
+						<li>
+							<label for="">&nbsp;</label>
+							<input type="checkbox" name="must_click" value="1" class="chb" checked="checked" /> 我已阅读并同意《用户注册协议》
+						</li>
+						<li>
+							<label for="">&nbsp;</label>
+							<input type="submit" value="" class="login_btn" />
+						</li>
+					</ul>
+				</form>
+
+				
+			</div>
+			
+			<div class="mobile fl">
+				<h3>手机快速注册</h3>			
+				<p>中国大陆手机用户，编辑短信 “<strong>XX</strong>”发送到：</p>
+				<p><strong>1069099988</strong></p>
+			</div>
+
+		</div>
+	</div>
+	<!-- 登录主体部分end -->

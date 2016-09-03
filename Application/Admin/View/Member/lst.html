@@ -1,0 +1,72 @@
+<layout name="layout" />
+<!-- 搜索 -->
+<div class="form-div search_form_div">
+    <form action="__ACTION__" method="GET" name="search_form">
+		<p>
+			Email：
+	   		<input type="text" name="email" size="30" value="<?php echo I('get.email'); ?>" />
+		</p>
+		<p>
+			昵称：
+	   		<input type="text" name="name" size="30" value="<?php echo I('get.name'); ?>" />
+		</p>
+		<p>
+			注册时间：
+	   		从 <input id="st" type="text" name="st" size="15" value="<?php echo I('get.st'); ?>" /> 
+		    到 <input id="et" type="text" name="et" size="15" value="<?php echo I('get.et'); ?>" />
+		</p>
+		<p>
+			注册时的IP：
+	   		<input type="text" name="regip" size="30" value="<?php echo I('get.regip'); ?>" />
+		</p>
+		<p>
+			性别：
+			<input type="radio" value="-1" name="gender" <?php if(I('get.gender', -1) == -1) echo 'checked="checked"'; ?> /> 全部 
+			<input type="radio" value="男" name="gender" <?php if(I('get.gender', -1) == '男') echo 'checked="checked"'; ?> /> 男 
+			<input type="radio" value="女" name="gender" <?php if(I('get.gender', -1) == '女') echo 'checked="checked"'; ?> /> 女 
+			<input type="radio" value="保密" name="gender" <?php if(I('get.gender', -1) == '保密') echo 'checked="checked"'; ?> /> 保密 
+		</p>
+		<p>
+			是否已验证：
+			<input type="radio" value="-1" name="status" <?php if(I('get.status', -1) == -1) echo 'checked="checked"'; ?> /> 全部 
+			<input type="radio" value="2" name="status" <?php if(I('get.status', -1) == '2') echo 'checked="checked"'; ?> /> 全部 
+			<input type="radio" value="0" name="status" <?php if(I('get.status', -1) == '0') echo 'checked="checked"'; ?> /> 未验证 
+			<input type="radio" value="1" name="status" <?php if(I('get.status', -1) == '1') echo 'checked="checked"'; ?> /> 已验证 
+		</p>
+		<p><input type="submit" value=" 搜索 " class="button" /></p>
+    </form>
+</div>
+<!-- 列表 -->
+<div class="list-div" id="listDiv">
+	<table cellpadding="3" cellspacing="1">
+    	<tr>
+            <th >Email</th>
+            <th >昵称</th>
+            <th >密码</th>
+            <th >头像</th>
+            <th >性别</th>
+            <th >是否通过验证</th>
+			<th width="60">操作</th>
+        </tr>
+		<?php foreach ($data as $k => $v): ?>            
+			<tr class="tron">
+				<td><?php echo $v['email']; ?></td>
+				<td><?php echo $v['name']; ?></td>
+				<td><?php echo $v['password']; ?></td>
+				<td><?php echo $v['face']; ?></td>
+				<td><?php echo $v['gender']; ?></td>
+				<td><?php echo $v['status']; ?></td>
+		        <td align="center">
+		        	<a href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p')); ?>" title="编辑">编辑</a> |
+	                <a href="<?php echo U('delete?id='.$v['id'].'&p='.I('get.p')); ?>" onclick="return confirm('确定要删除吗？');" title="移除">移除</a> 
+		        </td>
+	        </tr>
+        <?php endforeach; ?> 
+		<?php if(preg_match('/\d/', $page)): ?>  
+        <tr><td align="right" nowrap="true" colspan="99" height="30"><?php echo $page; ?></td></tr> 
+        <?php endif; ?> 
+	</table>
+</div>
+<script>
+$('#st').datepicker(); $('#et').datepicker(); </script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/Js/tron.js"></script>

@@ -1,0 +1,41 @@
+<layout name="layout" />
+
+<div class="main-div">
+    <form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data" >
+    	<input type="hidden" name="id" value="<?php echo $data['id']; ?>" />
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <tr>
+                <td class="label">级别名称：</td>
+                <td>
+                    <input  type="text" name="level_name" value="<?php echo $data['level_name']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">折扣率，100=10折 98=9.8折 90=9折，用时除100：</td>
+                <td>
+                    <input  type="text" name="level_rate" value="<?php echo $data['level_rate']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">积分下限：</td>
+                <td>
+                    <input  type="text" name="jifen_bottom" value="<?php echo $data['jifen_bottom']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">积分上限：</td>
+                <td>
+                    <input  type="text" name="jifen_top" value="<?php echo $data['jifen_top']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="99" align="center">
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+</script>

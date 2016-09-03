@@ -1,0 +1,82 @@
+<layout name="layout" />
+
+<form method="post" action="__SELF__" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+            	<?php foreach ($gaData as $k => $v): ?>
+            	<th><?php echo $k; ?></th>
+            	<?php endforeach; ?>
+                <th width="150">库存量</th>
+                <th width="60">操作</th>
+            </tr>
+            <?php 
+            // 如果原来已经设置了库存量那么就循环输出原来的。
+            if($gnData): ?>
+	            <?php foreach ($gnData as $k0 => $v0): ?>
+	           <tr>
+	           		<?php foreach ($gaData as $k => $v): ?>
+	            	<td>
+		            	<select name="goods_attr_id[]">
+		            		<option value="">请选择</option>
+		            		<?php foreach ($v as $k1 => $v1): 
+		            			if(strpos(','.$v0['attr_list'].',', ','.$v1['id'].',') !== FALSE)
+			            			$select= 'selected="selected"';
+			            		else 
+			            			$select = '';
+		            		?>
+		            		<option <?php echo $select; ?> value="<?php echo $v1['id']; ?>"><?php echo $v1['attr_value']; ?>
+		            		<?php endforeach; ?>
+		            	</select>
+	            	</td>
+	            	<?php endforeach; ?>
+	           		<td><input type="text" name="gn[]" value="<?php echo $v0['goods_number']; ?>" /></td>
+	           		<td>
+	           		<?php if($gaData): ?>
+	           			<input onclick="addTr(this);" type="button" value="<?php echo $k0==0?'+':'-'; ?>" />
+	           		<?php endif; ?></td>
+	           </tr>
+	           <?php endforeach; ?>
+	        <?php else: ?>
+	        	<tr>
+	           		<?php foreach ($gaData as $k => $v): ?>
+	            	<td>
+		            	<select name="goods_attr_id[]">
+		            		<option value="">请选择</option>
+		            		<?php foreach ($v as $k1 => $v1):  ?>
+		            		<option value="<?php echo $v1['id']; ?>"><?php echo $v1['attr_value']; ?>
+		            		<?php endforeach; ?>
+		            	</select>
+	            	</td>
+	            	<?php endforeach; ?>
+	           		<td><input type="text" name="gn[]" value="" /></td>
+	           		<td>
+	           		<?php if($gaData): ?>
+	           			<input onclick="addTr(this);" type="button" value="+" />
+	           		<?php endif; ?>
+	           		</td>
+	           </tr>
+	        <?php endif; ?>
+        </table>
+        <table>
+        <?php $attrCount = count($gaData); ?>
+           <tr>
+           		<td align="center" colspan="<?php echo $attrCount+2; ?>"><input type="submit" value="保存" /></td>
+           </tr>
+        </table>
+    </div>
+</form>
+<script>
+function addTr(btn)
+{
+	var tr = $(btn).parent().parent();
+	if($(btn).val() == '+')
+	{
+		var newTr = tr.clone();
+		newTr.find(":button").val('-');
+		$("table:first").append(newTr);
+	}
+	else
+		tr.remove();
+}
+</script>
